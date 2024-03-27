@@ -7,8 +7,18 @@ const ListUsers = () => {
 
     useEffect( ()=>{
         const fetchUsers = ()=>{
-            const response =  axios.get("https://bank-01-9dc728aeb614.herokuapp.com/client")
-            .then(response=>setUsers(response.data))
+            const uuid = localStorage.getItem('uuid')
+            const axiosConfig = {
+                headers: {
+                  Authorization: `Bearer ${uuid}`
+                }
+              };
+           
+             axios.get(`${process.env.REACT_APP_API}client`,axiosConfig)
+            .then((response)=>{
+                console.log("-----------------------------------------------------------------------")
+                console.log("response",response.data)
+                setUsers(response.data)})
             .catch(e=>console.log("err =>"+e))
         }
        fetchUsers();

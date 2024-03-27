@@ -1,12 +1,56 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaInfoCircle } from "react-icons/fa";
 import { TbWorld } from "react-icons/tb";
+import axios from 'axios';
 
 import Logo from './Logo';
 import Header from './components/Header';
+import { useNavigate } from 'react-router-dom';
 const LoginAll = () => {
+  const navigate = useNavigate()
+  const [username,setUsername]= useState('')
+  const [password,setPassword] = useState('')
+  const handleLogin= async()=>{
+    
+
+      try {
+        console.log("api=W",process.env.REACT_APP_API)
+        const response = await fetch(`${process.env.REACT_APP_API}auth/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Set Content-Type header to application/json
+              },
+            body: JSON.stringify({
+              username:username,
+              password:password
+            })
+          });
+          const responseObject = await response.json();
+          const uuid = responseObject.uuid;
+          const user = responseObject.user;
+        
+          localStorage.setItem('role',user.role)
+          localStorage.setItem('firstname',user.firstname)
+          localStorage.setItem('lastname',user.lastname)
+          localStorage.setItem('email',user.email)
+          localStorage.setItem('balance',user.balance)
+          localStorage.setItem('uuid',uuid)
+         if(user.role==="ADMIN"){
+          navigate('/admin')
+         }else{
+          navigate('/user/dashboard')
+         }
+
+    } catch (error) {
+        console.log("errr =>"+error)
+    }
+    
+    
+
+   
+  }
   return (
     <div className='page-wrapper'>
       <Header/>
@@ -14,12 +58,12 @@ const LoginAll = () => {
       <div className="container login-container ps-4">
           <h1 className=' pt-5'>Log on </h1>
           <div className="form-login-group">
-          <label for="exampleFormControlInput1" className="form-label">Email address</label>
-            <input type="email" className="form-control" id="email" placeholder="name@example.com"/>
+          <label for="exampleFormControlInput1" className="form-label">Username</label>
+            <input type="text" className="form-control" id="email" placeholder="name@example.com" onChange={(e)=>{setUsername(e.currentTarget.value)}}/>
             <label for="password" className="form-label mt-4">password</label>
-            <input type="password" className="form-control" id="password" placeholder="enter your password"/>
+            <input type="password" className="form-control" id="password" placeholder="enter your password" onChange={(e)=>{setPassword(e.currentTarget.value)}}/>
             <div className='d-flex justify-content-end'>
-            <button  className='btn login-btn mt-5'> log in</button>
+            <button  className='btn login-btn mt-5' onClick={handleLogin}> log in</button>
             </div>
           </div>
       </div>

@@ -15,8 +15,6 @@ function App() {
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<LoginAll />}/>
-            <Route path="login/user" element={<LoginUser />} />
-            <Route path="login/admin" element={<Login />} />
             <Route path="user/dashboard" element={<UserDashboard />} >
                 <Route index  element={<UserListTransfers/>} />
                 <Route path="transfert" element={<UserWireTransfert />}/>
