@@ -1,38 +1,85 @@
-.App {
-  text-align: center;
+*{
+
+}
+.user-wire-wrapper h6{
+width: 200px;
+}
+.gap-70{
+  gap: 70px;
+}
+.gap-100{
+  gap:100px
+}
+.gap-80{
+  gap:80px;
+}
+.page-wrapper{
+  background-image: url('../public/imgs/getty_158673029_9707279704500119_78594.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
+  height: 100%;
+}
+.header-login{
+  background-color: #515358;
+  height: 33px;
+}
+.login-container{
+  width: 600px;
+  height:400px;
+  margin-top: 150px;
+  border: 1px solid black;
+}
+.logo{
+  background-color: white;
+}
+.login-container{
+  background-color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.gap-1{
+  gap: 5px;
+}
+.gap-10{
+  gap: 10px;
+}
+.login-container h1{
+  margin: 0;
+  font-size: 2.4em;
+  font-weight: 300;
+  line-height: 1.2em;
+  padding: 0 0 23px;
+  color: rgb(42, 39, 39);
+
+}
+ .login-btn{
+  background-color: #f34553;
+    border: 1px solid #ed7f88;
+    color: #ffffff;
+    height: 2.9em;
+    padding: 10px 14px;
+    font-size: 1em;
+    min-width: 190px;
+    cursor: pointer;
+    transition: all 1s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+ .login-btn:hover{
+  background-color: #ff0e22;
+    border: 1px solid #ed7f88;
+   
+}
+.footer-login{
+  background-color: #515358;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.columns{
+  border-right: 1px solid white;
 }
 
-.App-link {
-  color: #61dafb;
+.user-account-wrapper{
+  border-bottom: 1px gray solid;
 }
+/*here begin userDashboard component */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+

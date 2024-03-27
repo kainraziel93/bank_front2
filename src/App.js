@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import { BrowserRouter,Route,Router,Routes } from 'react-router-dom';
+import LoginAll from './LoginAll'
+import LoginUser from './user-components/LoginUser';
+import Login from './admin-components/Login';
+import UserDashboard from './user-components/UserDashboard';
+import UserListTransfers from './user-components/UserListTransfers';
+import UserWireTransfert from './user-components/UserWireTransfert';
+import AdminDashboard from './admin-components/AdminDashboard';
+import ListUser from './admin-components/ListUsers'
+import CreateUserForm from './admin-components/CreateUserForm';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<LoginAll />}/>
+            <Route path="login/user" element={<LoginUser />} />
+            <Route path="login/admin" element={<Login />} />
+            <Route path="user/dashboard" element={<UserDashboard />} >
+                <Route index  element={<UserListTransfers/>} />
+                <Route path="transfert" element={<UserWireTransfert />}/>
+            </Route>  
+            <Route path="/admin" element={<AdminDashboard />}>
+              <Route index element={<ListUser/>}/>
+              <Route path='add' element={<CreateUserForm/>}/>
+            </Route>
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
