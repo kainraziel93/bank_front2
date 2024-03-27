@@ -23,7 +23,7 @@ const CreateUserForm = () => {
         console.log(client)
         try {
             
-            const response = await fetch(`${process.env.REACT_APP_API}client/add`, {
+            const response = await fetch(`https://bank-01-9dc728aeb614.herokuapp.com/client/add`, {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json' ,

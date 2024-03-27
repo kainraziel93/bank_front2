@@ -14,7 +14,7 @@ const ListUsers = () => {
                 }
               };
            
-             axios.get(`${process.env.REACT_APP_API}client`,axiosConfig)
+             axios.get(`https://bank-01-9dc728aeb614.herokuapp.com/client`,axiosConfig)
             .then((response)=>{
                 console.log("-----------------------------------------------------------------------")
                 console.log("response",response.data)
