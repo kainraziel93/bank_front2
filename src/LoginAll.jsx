@@ -17,7 +17,7 @@ const LoginAll = () => {
 
       try {
         console.log("api=W",process.env.REACT_APP_API)
-        const response = await fetch(`${process.env.REACT_APP_API}auth/login`, {
+        const response = await fetch(`https://bank-01-9dc728aeb614.herokuapp.com/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Set Content-Type header to application/json
