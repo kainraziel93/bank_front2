@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import api from '../components/api.js'
 const ListUsers = () => {
     const [users,setUsers]=useState([]);
-
+    const navigate = useNavigate()
+    const uuid = localStorage.getItem('uuid')
     useEffect( ()=>{
         const fetchUsers = ()=>{
-            const uuid = localStorage.getItem('uuid')
+            
+            console.log("uuid ==========>"+uuid)
             const axiosConfig = {
                 headers: {
                   Authorization: `Bearer ${uuid}`
                 }
               };
            
-             axios.get(`https://bank-01-9dc728aeb614.herokuapp.com/client`,axiosConfig)
+             axios.get(`${api}client`,axiosConfig)
             .then((response)=>{
                 console.log("-----------------------------------------------------------------------")
                 console.log("response",response.data)
@@ -29,14 +32,12 @@ const ListUsers = () => {
     <div className='container'>
         <Link className='btn  btn-primary' to="add" style={{borderRadius:"20px"}}> Créer un nouveau client </Link>
         <h6 className='my-4 mx-4'>{users.length} utilisateur(s)</h6>
-        <table className='table'>
+        <table className='table table-striped border'>
             <thead>
                 <tr>
                     <th>id</th>
                     <th>email</th>
-                    <th>balance_join</th>
-                    <th>balance_advance</th>
-                    <th>balance_isa</th>
+                    <th>Release</th>
                     <th>role</th>
                     <th>actions</th>
                 </tr>
@@ -47,12 +48,10 @@ const ListUsers = () => {
                         
                         return (<tr key={key}>
                             <td>{element.id}</td>
-                            <td>{element.email}</td>
-                            <td>{element.balanceJoin}</td>
-                            <td>{element.balanceAdvance}</td>
-                            <td>{element.balanceIsa}</td>
+                            <td style={{cursor:"pointer",textDecoration:"underline",color:"blue"}} onClick={()=>navigate("/admin/transaction/"+element.id,{state:{user:element}})}>{element.email}</td>
+                            <td>{element.balance}</td>
                             <td>{element.role}</td>
-                            <td>edit</td>
+                            <td style={{cursor:"pointer",textDecoration:"underline",color:"blue"}} onClick={()=>navigate("edit",{state:{user:element}})} >edit</td>
                         </tr>)
                     })
                 }

@@ -2,52 +2,60 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import api from '../components/api.js'
-const CreateUserForm = () => {
+const UpdateClientForm = () => {
     const navigator = useNavigate()
-    let [firstname,setFirstname]=useState('');
-    let [email,setEmail]=useState('');
-    let [lastname,setLastname] = useState('');
-    let [balanceJoin,setBalanceJoin] = useState('')
-    let [balanceIsa,setBalanceIsa] = useState('')
-    let [balanceAdvance,setBalanceAdvance] = useState('')
-    let [account,setAccount] = useState('DOLLAR')
-    let [username,setUsername] =useState('')
-    let [password,setPassword] = useState('')
-    let [newPassword,setNewPassword] = useState('')
-    let [role,setRole] = useState('ADMIN')
-    
+    const update = useLocation().state.user
+    const id = update.id
+    update.firstname=update.firstname?update.firstname:''
+    update.email=update.email?update.email:''
+    update.lastname=update.lastname?update.lastname:''
+    update.balanceJoin=update.balanceJoin?update.balanceJoin:''
+    update.balanceIsa=update.balanceIsa?update.balanceIsa:''
+    update.balanceAdvance=update.balanceAdvance?update.balanceAdvance:''
+    update.username= update.username?update.username:''
+    update.password=update.password?update.password:''
+    update.newPassword=update.newPassword?update.newPassword:''
+    update.role=update.role?update.role:'ADMIN'
+    let [firstname,setFirstname]=useState(update.firstname);
+    let [email,setEmail]=useState(update.email);
+    let [lastname,setLastname] = useState(update.lastname);
+    let [balanceJoin,setBalanceJoin] = useState(update.balanceJoin)
+    let [balanceIsa,setBalanceIsa] = useState(update.balanceIsa)
+    let [balanceAdvance,setBalanceAdvance] = useState(update.balanceAdvance)
+    let [account,setAccount] = useState('')
+    let [username,setUsername] =useState(update.username)
+    let [password,setPassword] = useState(update.password)
+    let [newPassword,setNewPassword] = useState(update.password)
+    let [role,setRole] = useState(update.role)
+        
+        useEffect(()=>{
+                
+        },[])
     const handleSubmit = async ()=>{
 
         const client = {
-            firstname,lastname,email,balanceJoin,balanceIsa,
-            balanceAdvance,account:"DOLLAR",username,role,password,uuid:''
+            id,firstname,lastname,email,balanceJoin,balanceIsa,
+            balanceAdvance,account:"DOLLAR",username,role,password,newPassword
         }
-
-        const b =  JSON.stringify(client)
-        console.log("hada client => "+b)
-        const uuid = localStorage.getItem("uuid")
+        const uuid = localStorage.getItem("uuid");
         console.log(client)
         try {
             
-            const response = await fetch(`${api}client/add`, {
+            const response = await fetch(`${api}client/update`, {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json' ,
                     'Authorization':`Bearer ${uuid}`
                   },
-                body: b
+                body: JSON.stringify(client)
               });
-          
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+              const res = await response.json()
+            console.log("hadi response f sucess =>",res)
+            navigator("/admin")
 
-        const responseData = await response.json();
-        console.log("Response data:", responseData);
-        navigator("/admin")
-    } catch (error) {
-        console.error("Error:", error);
-    }
+        } catch (error) {
+            console.log("errr =>"+error)
+        }
       
     }
     
@@ -55,7 +63,7 @@ const CreateUserForm = () => {
     <div className='container user-wire-wrapper position-relative'>
         <div className="d-flex align-items-center  justify-content-between  mt-4 gap-100">
             <h6 className='pt-3 fw-light' > FIRSTNAME </h6>
-            <input type="text"   onChange={
+            <input type="text" value={firstname}  onChange={
                 (e)=>{ setFirstname(e.currentTarget.value)
                     console.log(firstname)}
             } class="form-control" id="firstname" placeholder=""/>
@@ -64,6 +72,7 @@ const CreateUserForm = () => {
             <h6 className='pt-3 fw-light ' > LASTNAME </h6>
             <input 
             type="text" 
+            value={lastname}
             class="form-control" 
             onChange={
                 (e)=>{ setLastname(e.currentTarget.value)
@@ -74,7 +83,9 @@ const CreateUserForm = () => {
         </div>
         <div className="d-flex align-items-center mt-2   gap-100">
         <h6 className='pt-3 fw-light'> Account </h6>
-            <select  class="form-control" id="ibna" value={account}  onChange={
+            <select  class="form-control" id="ibna" value={account} 
+            
+            onChange={
                 (e)=>{ setAccount(e.currentTarget.value)
                     console.log(account)}}   placeholder=""> 
                  <option value="DOLLAR"> DOLLARS</option>  <option value="EUROS"> EUROS</option>  <option value="LIVRE">LIVRES</option>
@@ -83,6 +94,7 @@ const CreateUserForm = () => {
         <div className="d-flex align-items-center mt-2 justify-content-between gap-100">
             <h6 className='pt-3 fw-light'> EMAIL </h6>
             <input 
+            value={email}
             type="text" 
             class="form-control"
              id="email"
@@ -94,6 +106,7 @@ const CreateUserForm = () => {
         <div className="d-flex align-items-center mt-2 justify-content-between gap-100">
             <h6 className='pt-3 fw-light'> USERNAME </h6>
             <input 
+            value={username}
             type="text" 
             class="form-control"
              id="username"
@@ -106,6 +119,7 @@ const CreateUserForm = () => {
             <h6 className='pt-3 fw-light'> PASSWORD </h6>
             <input type="text"
              class="form-control" 
+             value={password}
              onChange={
                 (e)=>{ setPassword(e.currentTarget.value)
                     console.log(password)}} 
@@ -115,6 +129,7 @@ const CreateUserForm = () => {
         <div className="d-flex align-items-center mt-2  gap-100">
             <h6 className='pt-3 fw-light'> RETYPE PASSWORD </h6>
             <input 
+            value={newPassword}
             type="text" 
             onChange={
                 (e)=>{ setNewPassword(e.currentTarget.value) 
@@ -129,6 +144,7 @@ const CreateUserForm = () => {
              type="text"
              class="form-control"
              value={role}
+             
              onChange={
                 (e)=>{ setRole(e.currentTarget.value)
                     console.log(role)}} 
@@ -140,6 +156,7 @@ const CreateUserForm = () => {
             <h6 className='pt-3 fw-light'> BALANCE ADVANCE </h6>
             <input
              type="text"
+             value={balanceAdvance}
              onChange={
                 (e)=>{ setBalanceAdvance(e.currentTarget.value)
                     console.log(balanceAdvance)}} 
@@ -150,6 +167,7 @@ const CreateUserForm = () => {
         <div className="d-flex align-items-center  mt-2 gap-100">
             <h6 className='pt-3 fw-light'> BALANCE ISA </h6>
             <input
+            value={balanceIsa}
              type="text"
              onChange={
                 (e)=>{ setBalanceIsa(e.currentTarget.value)
@@ -161,6 +179,7 @@ const CreateUserForm = () => {
         <div className="d-flex align-items-center  mt-2 gap-100">
             <h6 className='pt-3 fw-light'> BALANACE JOIN </h6>
             <input
+            value={balanceJoin}
              type="text" 
              class="form-control" 
              onChange={
@@ -170,11 +189,11 @@ const CreateUserForm = () => {
              placeholder=""/>
         </div>
         <div className="d-flex justify-content-end pe-4">
-        <button  className='btn login-btn mt-5' onClick={handleSubmit}> add</button>
+        <button  className='btn login-btn mt-5' onClick={handleSubmit}> update</button>
         </div>
         
     </div>
   )
 }
 
-export default CreateUserForm
+export default UpdateClientForm
