@@ -53,7 +53,10 @@ const UserListTransfers = () => {
                   {verifiedTransactions.map((item,key)=>{
                     
                     return <tr key={key}>
-                        <td>{item.date}</td><td>{item.reference}</td><td>confirmed</td><td>{item.amount}</td>
+                        <td>{new Date(item.date).toISOString().split('T')[0]}</td><td>{item.reference}</td><td>confirmed</td>
+                        <td className='d-flex flex-column align-items-center'>
+                          <div className='fw-bolder'>balance :{item.balance}</div><div className='fw-light ' style={{fontSize:"12px"}}>amount: -{item.amount} </div>
+                          </td>
                     </tr>
                   })}
                 </tbody>

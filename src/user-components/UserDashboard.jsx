@@ -1,21 +1,38 @@
 import React, { useEffect, useState } from 'react'
 import { FaUnlockAlt } from "react-icons/fa";
 
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../Logo';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 const UserDashboard = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [balance,setBalance]= useState('')
   const [disponible,setDisponible]=useState('')
 
   useEffect(()=>{
+    if(localStorage.getItem('role')!=="CLIENT" && localStorage.getItem('role')!=="ADMIN"){
+      localStorage.setItem('role',"")
+      navigate('/')}
+
+    const fetchtran =async ()=>{
+       const reponse = await fetch(('http://localhost:8080/transaction/1'),{
+        headers:{
+          'Authorization': `Bearer ${localStorage.getItem('uuid')}`
+        }
+       })
+       const a = await reponse.json()
+       console.log("checkin if you have access to this ressource =>-----",a)
+    }
+    fetchtran()
     setBalance(localStorage.getItem('balance'))
     setDisponible(localStorage.getItem('disponible'))
-  })
+    
+  },[])
   return (
     <div>
-    <div className="page-wrapper ">
+    <div className="page-wrapper "style={{height:location.pathname==="/user/dashboard"?"100vh":""}}>
     <Header/>
     <div className="container   mt-5">
       <div className='user-account-wrapper  '>
@@ -102,7 +119,9 @@ const UserDashboard = () => {
     </div>
 
     </div>
+    <div className=''>
     <Footer/>
+    </div>
     </div>
   )
 }

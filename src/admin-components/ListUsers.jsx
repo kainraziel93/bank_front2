@@ -8,6 +8,11 @@ const ListUsers = () => {
     const navigate = useNavigate()
     const uuid = localStorage.getItem('uuid')
     useEffect( ()=>{
+        
+        if( localStorage.getItem('role')!=="ADMIN"){
+           
+            navigate('/')}
+
         const fetchUsers = ()=>{
             
             console.log("uuid ==========>"+uuid)

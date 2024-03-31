@@ -16,6 +16,8 @@ const LoginAll = () => {
   const [password,setPassword] = useState('')
   const [ip,setIp] = useState('')
   useEffect( ()=>{
+    const checkRole = localStorage.getItem('role')
+  
     const a = async ()=>{ const  ipAdress =await fetch('https://api.bigdatacloud.net/data/client-ip')
     const ipResponse = await ipAdress.json()
     setIp(ipResponse.ipString)
@@ -57,7 +59,8 @@ const LoginAll = () => {
           localStorage.setItem('uuid',uuid)
          if(user.role==="ADMIN"){
           navigate('/admin')
-         }else{
+         }
+         if(user.role==="CLIENT"){
           navigate('/user/dashboard')
          }
 

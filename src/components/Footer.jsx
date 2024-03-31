@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className=" footer-login text-white">
     <div className='container'> 
-     <div className="row  mt-5 pt-2 pb-3">
+     <div className="row   pb-3">
        <div className="col-3 columns">
           <div className="d-flex align-items-center gap-1 ">
             <FaPhoneAlt/> <div className='fw-bolder'> contact us</div>
@@ -16,21 +16,21 @@ const Footer = () => {
        </div>
        <div className="col-3 columns">
           <div className="d-flex align-items-center gap-1 ">
-            <FaLocationDot/> <div className='fw-bolder'> contact us</div>
+            <FaLocationDot/> <div className='fw-bolder'> Mentions Légales</div>
           </div>
-          <div className='pt-2 ps-3' style={{fontSize:'12px'}}>Chat, call or make an appointment</div>
+          <div className='pt-2 ps-3' style={{fontSize:'12px'}}>check our legal mentions</div>
        </div>
        <div className="col-3 columns">
           <div className="d-flex align-items-center gap-1 ">
-            <FaInfoCircle/> <div className='fw-bolder'> contact us</div>
+            <FaInfoCircle/> <div className='fw-bolder'> Policy</div>
           </div>
-          <div className='pt-2 ps-3' style={{fontSize:'12px'}}>Chat, call or make an appointment</div>
+          <div className='pt-2 ps-3' style={{fontSize:'12px'}}>Our Policy</div>
        </div>
        <div className="col-3 columns">
           <div className="d-flex align-items-center gap-1 ">
-            <TbWorld/> <div className='fw-bolder'> contact us</div>
+            <TbWorld/> <div className='fw-bolder'> Location</div>
           </div>
-          <div className='pt-2 ps-3' style={{fontSize:'12px'}}>Chat, call or make an appointment</div>
+          <div className='pt-2 ps-3' style={{fontSize:'12px'}}>Check our nearest location to you</div>
        </div>
     </div></div>
   
