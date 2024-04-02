@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
 import api from '../components/api.js'
+import WirePdf from '../user-components/WirePdf.jsx';
 const ListUsers = () => {
     const [users,setUsers]=useState([]);
     const navigate = useNavigate()
@@ -41,7 +42,7 @@ const ListUsers = () => {
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>email</th>
+                    <th>Fullname</th>
                     <th>Release</th>
                     <th>role</th>
                     <th>actions</th>
@@ -53,7 +54,7 @@ const ListUsers = () => {
                         
                         return (<tr key={key}>
                             <td>{element.id}</td>
-                            <td style={{cursor:"pointer",textDecoration:"underline",color:"blue"}} onClick={()=>navigate("/admin/transaction/"+element.id,{state:{user:element}})}>{element.email}</td>
+                            <td style={{cursor:"pointer",textDecoration:"underline",color:"blue"}} onClick={()=>navigate("/admin/transaction/"+element.id,{state:{user:element}})}>{element.firstname+" "+element.lastname}</td>
                             <td>{element.balance}</td>
                             <td>{element.role}</td>
                             <td style={{cursor:"pointer",textDecoration:"underline",color:"blue"}} onClick={()=>navigate("edit",{state:{user:element}})} >edit</td>
@@ -62,6 +63,7 @@ const ListUsers = () => {
                 }
             </tbody>
         </table>
+
     </div>
   )
 }

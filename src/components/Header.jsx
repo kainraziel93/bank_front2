@@ -12,7 +12,8 @@ const Header = () => {
   return (
     <>
     <div className="header-login d-flex justify-content-end align-items-center">
-      {(location.pathname==="/user/dashboard" || location.pathname==="/user/dashboard/transfert") && (<div className='me-5 d-flex align-items-center gap-5'>
+      {(location.pathname==="/user/dashboard" || location.pathname==="/user/dashboard/transfert") && (<div className=' container  '>
+        <div className='me-2 d-flex  justify-content-end align-items-center gap-3'>
         <span className='header-language' style={{fontSize:"12px"}}>English</span>
         <div className='header-language d-flex gap-2 justify-content-center align-items-center'>
           <FaUser className=' '/>
@@ -23,31 +24,37 @@ const Header = () => {
         <span className='header-language ff position-relative' style={{fontSize:"12px"}}><IoMdNotifications className='fs-5'/></span>
         <span className='position-absolute text-white px-1' style={{top:"0%",left:"60%",fontSize:"10px",background:"red"}}>3</span>
         </div>
+        </div>
+       
         
       </div>)}
     </div>
     <div className='logo'>
-    <div className="  d-flex justify-content-between align-items-center  py-0">
+    <div className="  d-flex justify-content-between align-items-center container py-0">
         <div className={!location.pathname.startsWith("/admin")?"visible":"invisible"}><Logo/></div>
         {(location.pathname !=="/" && !location.pathname.startsWith("/admin"))&&
           (
           <div className='d-flex header-menu gap-5'>
             <div className='position-relative'  onClick={()=>{navigate("/user/dashboard")}} style={{cursor:"pointer"}}>
               <h6>My Banking</h6>
-              <h6 className='fw-light'>Account dashboard</h6>
+              <h6 className='fw-light  sub-title'>Account dashboard</h6>
               <div className='position-absolute' style={{border:"2px solid #f8002a",width: "100%",top:"68px"}}></div>
            </div>
             <div  style={{cursor:"pointer"}}>
-              <h6>My Banking</h6>
-              <h6 className='fw-light'>Account dashboard</h6>
+              <h6> My Portfolio</h6>
+              <h6 className='fw-light sub-title'>Stocks & shares</h6>
            </div>
            <div  style={{cursor:"pointer"}}>
-              <h6>My Banking</h6>
-              <h6 className='fw-light' >Account dashboard</h6>
+              <h6>My Rewards & Offers</h6>
+              <h6 className='fw-light sub-title' >Get more from HSBC</h6>
            </div>
             <div  style={{cursor:"pointer"}}>
-              <h6>My Banking</h6>
-              <h6 className='fw-light'>Account dashboard</h6>
+              <h6>Products & Services</h6>
+              <h6 className='fw-light sub-title'>Bank, Borrow, Invest, Protect</h6>
+           </div> 
+           <div  style={{cursor:"pointer"}}>
+              <h6>Contact Us</h6>
+              <h6 className='fw-light sub-title'>Help & Support</h6>
            </div>
           </div>
           
