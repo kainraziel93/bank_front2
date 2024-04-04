@@ -69,7 +69,7 @@ const LoginAll = () => {
          }
 
     } catch (error) {  
-        console.log("errr =>"+error)
+        console.log("errreur =>"+error)
     }
 
    
