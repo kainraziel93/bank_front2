@@ -40,6 +40,7 @@ const UserListTransfers = () => {
           const res = await response.json()
         console.log("hadi response f sucess =>",res)
           setVerifiedTransactions(res)
+         
     } 
     catch (error) {
     console.log("errr =>"+error)
@@ -84,9 +85,9 @@ const UserListTransfers = () => {
                           
                           </td>
                         <td  className='pt-3' style={{fontSize:"13px",color:"#c5c5c5"}}>confirmed</td>
-                        <td className='d-flex flex-column align-items-center '>
-                        <div className='fw-light 'style={{fontSize:"13px",color:"#666666"}}> { item.amount <0? <span>-{item.amount}</span>:<span>+{item.amount}</span> } </div>
-                          <div style={{fontSize:"13px",color:"#c5c5c5"}}>-{item.balance}</div>
+                        <td className='d-flex flex-column justify-content-start align-items-start '>
+                        <div className='fw-light 'style={{fontSize:"13px",color:"#666666"}}><span>-{item.amount}</span></div>
+                          <div style={{fontSize:"13px",color:"#c5c5c5"}}>{ item.balance <0? <span>{item.balance}</span>:<span>+{item.balance}</span> }</div>
                           </td>
                     </tr>
                   })}

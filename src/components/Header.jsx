@@ -29,32 +29,33 @@ const Header = () => {
         
       </div>)}
     </div>
-    <div className='logo'>
+    <div className='logo' style={{marginLeft:"-400px"}}>
     <div className="  d-flex justify-content-between align-items-center container py-0">
-        <div className={!location.pathname.startsWith("/admin")?"visible":"invisible"}><Logo/></div>
+        <div onClick={()=>{navigate('/user/dashboard')}} style={{cursor:"pointer"}} className={!location.pathname.startsWith("/admin")?"visible":"invisible"}><Logo  /></div>
         {(location.pathname !=="/" && !location.pathname.startsWith("/admin"))&&
           (
           <div className='d-flex header-menu gap-5'>
             <div className='position-relative'  onClick={()=>{navigate("/user/dashboard")}} style={{cursor:"pointer"}}>
-              <h6>My Banking</h6>
-              <h6 className='fw-light  sub-title'>Account dashboard</h6>
-              <div className='position-absolute' style={{border:"2px solid #f8002a",width: "100%",top:"68px"}}></div>
+              <h6 style={{fontSize:"19px"}}>My Banking</h6>
+              <h6 style={{fontSize:"16px"}}  className='fw-light  sub-title'>Account dashboard</h6>
+
+              <div className='position-absolute' style={{border:"2px solid #f8002a",width: "90%",top:"74px"}}></div>
            </div>
             <div  style={{cursor:"pointer"}}>
-              <h6> My Portfolio</h6>
-              <h6 className='fw-light sub-title'>Stocks & shares</h6>
+              <h6 style={{fontSize:"19px"}}> My Portfolio</h6>
+              <h6 style={{fontSize:"16px"}} className='fw-light sub-title'>Stocks & shares</h6>
            </div>
            <div  style={{cursor:"pointer"}}>
-              <h6>My Rewards & Offers</h6>
-              <h6 className='fw-light sub-title' >Get more from HSBC</h6>
+              <h6 style={{fontSize:"19px"}}>My Rewards & Offers</h6>
+              <h6 style={{fontSize:"16px"}} className='fw-light sub-title' >Get more from HSBC</h6>
            </div>
             <div  style={{cursor:"pointer"}}>
-              <h6>Products & Services</h6>
-              <h6 className='fw-light sub-title'>Bank, Borrow, Invest, Protect</h6>
+              <h6 style={{fontSize:"19px"}}>Products & Services</h6>
+              <h6 style={{fontSize:"16px"}} className='fw-light sub-title'>Bank, Borrow, Invest, Protect</h6>
            </div> 
            <div  style={{cursor:"pointer"}}>
-              <h6>Contact Us</h6>
-              <h6 className='fw-light sub-title'>Help & Support</h6>
+              <h6 style={{fontSize:"19px"}}>Contact Us</h6>
+              <h6 style={{fontSize:"16px"}} className='fw-light sub-title'>Help & Support</h6>
            </div>
           </div>
           
@@ -63,7 +64,7 @@ const Header = () => {
           
         }
         {location.pathname!=="/" &&(
-          <div className='btn text-white d-flex  align-items-center py-2 gap-10' onClick={()=>{
+          <div className='btn text-white d-flex  align-items-center py-2 gap-10'  onClick={()=>{
             localStorage.setItem('role','')
             localStorage.setItem('firstname','')
             localStorage.setItem('lastname','')
@@ -73,7 +74,7 @@ const Header = () => {
             localStorage.setItem('id','')
             localStorage.setItem('uuid','')
             navigate("/")
-          }} style={{backgroundColor:"black",cursor:'pointer'}} > 
+          }} style={{backgroundColor:"black",cursor:'pointer',marginRight:"-195px"}} > 
         <FaUnlockAlt/>
           <div>log out</div>
         </div>)

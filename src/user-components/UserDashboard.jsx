@@ -12,7 +12,7 @@ const UserDashboard = () => {
   const [balance,setBalance]= useState('')
   const [disponible,setDisponible]=useState('')
   const [isVisible, setIsVisible] = useState(false);
-
+  const clientId = localStorage.getItem('id')
   useEffect(()=>{
     if(localStorage.getItem('role')!=="CLIENT" && localStorage.getItem('role')!=="ADMIN"){
       localStorage.setItem('role',"")
@@ -32,9 +32,27 @@ const UserDashboard = () => {
       }
     
     }
+
+    const fetchClient=async()=>{
+      try {
+        
+        const response = await fetch(('http://localhost:8080/client/'+clientId),{
+          headers:{
+            'Authorization': `Bearer ${localStorage.getItem('uuid')}`
+          }
+         })
+         const a = await response.json()
+         setBalance(a.balance)
+         setDisponible(a.disponible)
+         console.log("this is the client =>"+a)
+      } catch (error) {
+        console.log("erreur fetchin client=>",error)
+      }
+    }
+    fetchClient()
     fetchtran()
-    setBalance(localStorage.getItem('balance'))
-    setDisponible(localStorage.getItem('disponible'))
+
+
     
   },[])
   return (
