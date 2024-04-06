@@ -5,7 +5,7 @@ import { IoMdNotifications } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { useLocation, useNavigate } from 'react-router-dom';
-const Header = () => {
+const Header = ({name}) => {
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -17,7 +17,7 @@ const Header = () => {
         <span className='header-language' style={{fontSize:"12px"}}>English</span>
         <div className='header-language d-flex gap-2 justify-content-center align-items-center'>
           <FaUser className=' '/>
-          <span className='  ' style={{fontSize:"12px"}}>HM TRADING GLOBAL PTE.LTD </span>
+          <span className='  ' style={{fontSize:"12px"}}>{name}</span>
           <RiArrowDropDownLine className='fs-5'/>
         </div>
         <div className='position-relative'>

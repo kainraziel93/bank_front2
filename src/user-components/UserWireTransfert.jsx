@@ -22,6 +22,7 @@ const UserWireTransfert = () => {
   const [isLoading,setIsLoading] = useState(false)
   const buttonRef = useRef(null)
 const [transactionId,setTransactionId] = useState('')
+
 const navigate = useNavigate()
   const formValue ={
         accountNumber,
@@ -137,7 +138,10 @@ console.log("errr =>"+error)
         </div>
         <div className="d-flex align-items-center  mt-2 gap-100">
             <h6 className='pt-3 fw-light'   style={{fontSize:"12px",fontWeight:"300",color:"#666666"}}> VALUE DATE </h6>
-            <DatePicker minDate={new Date()} required style={{minWidth:"400px"}}  selected={date} onChange={(e)=> setDate(e)}/>
+            <DatePicker
+             minDate={new Date()}
+              required style={{minWidth:"400px"}}  
+              selected={date} onChange={(e)=> setDate(e)}/>
             
         </div>
         <div className="d-flex justify-content-end pe-0">

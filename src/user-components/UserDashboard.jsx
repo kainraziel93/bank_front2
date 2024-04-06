@@ -10,8 +10,13 @@ const UserDashboard = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const [balance,setBalance]= useState('')
+  const [balanceAdvance,setBalanceAdvance] = useState('')
+  const [balanceJoin,setBalanceJoin] = useState('')
+  const [balanceIsa,setBalanceIsa] = useState('')
   const [disponible,setDisponible]=useState('')
+  const [fullname,setFullName] = useState('')
   const [isVisible, setIsVisible] = useState(false);
+  const [account,setAccount]=useState('')
   const clientId = localStorage.getItem('id')
   useEffect(()=>{
     if(localStorage.getItem('role')!=="CLIENT" && localStorage.getItem('role')!=="ADMIN"){
@@ -44,7 +49,15 @@ const UserDashboard = () => {
          const a = await response.json()
          setBalance(a.balance)
          setDisponible(a.disponible)
-         console.log("this is the client =>"+a)
+         setBalanceAdvance(a.balanceAdvance)
+         setBalanceJoin(a.balanceJoin)
+         setBalanceIsa(a.balanceIsa)
+         setFullName(a.firstname+" "+a.lastname)
+         if(a.account==='EURO')  setAccount('EUR')
+         if(a.account==='DOLLAR')setAccount('USD')
+         if(a.account==='LIVRE')setAccount('GPB')
+         console.log("this is the client =>",a)
+         console.log("this is the client acount =>",account)
       } catch (error) {
         console.log("erreur fetchin client=>",error)
       }
@@ -58,7 +71,7 @@ const UserDashboard = () => {
   return (
     <div>
     <div className="page-wrapper "style={{height:location.pathname==="/user/dashboard"?"100vh":""}}>
-    <Header/>
+    <Header name={fullname}/>
     <div className="container   mt-5">
       <div className='user-account-wrapper  '>
       <h6 className='text-white bg-dark ps-2 mb-0' style={{    fontsize: "1rem",padding: "13px"}}>MY ACCOUNTS</h6>
@@ -67,25 +80,25 @@ const UserDashboard = () => {
         <div className="row">
         <div className="col-4 ">
           <div className=" px-3 py-2 d-flex justify-content-between align-items-center py-2 text-white" style={{backgroundColor:"#6c757d"}}>
-            <h6 style={{fontSize:"0.8em",fontWeight:"200"}}>GBP ACCOUNTS</h6> <h6 style={{minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>GPB</span> <span style={{fontWeight:"300",fontSize:"13px"}}>771 480,92</span></h6>
+            <h6 style={{fontSize:"0.8em",fontWeight:"200"}}>{account} ACCOUNTS</h6> <h6 style={{minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>{account}</span> <span style={{fontWeight:"300",fontSize:"13px"}}>{balanceAdvance+balanceIsa+balanceJoin}</span></h6>
           </div>
           
           <div className=" user-panel-element bg-white  d-flex justify-content-between align-items-center ">
-            <h6 className='w-100'    style={{fontWeight:"500",fontSize: "0.8em",marginRight: "7px"}}>HM TRADING GLOBAL PTE.LTD Current Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>24E9DE19</div></h6>
-            <h6 style={{fontSize:"12px",minWidth:"100px" }}>  <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>GPB</span>{balance}</h6>
+            <h6 className='w-100'    style={{fontWeight:"500",fontSize: "0.8em",marginRight: "7px"}}>{fullname.toUpperCase()} Current Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>24E9DE19</div></h6>
+            <h6 style={{fontSize:"12px",minWidth:"100px" }}>  <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>{account}</span>{balance || 0}</h6>
             
           </div>
           <div className=" user-panel-element  d-flex justify-content-between align-items-center ">
             <h6 className='w-50'     style={{fontWeight:"500",fontSize: "0.9em",marginRight: "7px"}}>HSBC Advance Current <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>24E9DE19</div></h6>
-            <h6 style={{fontSize:"12px",minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>GPB</span> 138,580.00</h6>
+            <h6 style={{fontSize:"12px",minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>{account}</span> {balanceAdvance}</h6>
           </div>
           <div className=" user-panel-element d-flex justify-content-between align-items-center ">
           <h6 className='w-50' style={{fontWeight:"500",fontSize: "0.9em",marginRight: "7px"}} >Saving Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>24E9DE19</div></h6>
-            <h6 style={{fontSize:"12px",minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>GPB</span> 98,456.00 </h6>
+            <h6 style={{fontSize:"12px",minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>{account}</span>{balanceJoin} </h6>
           </div>
           <div className=" user-panel-element d-flex justify-content-between align-items-center ">
           <h6 className='w-50'   style={{fontWeight:"500",fontSize: "0.9em",marginRight: "7px"}}>HSBC ISA Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>24E9DE19</div></h6>
-            <h6 style={{fontSize:"12px",minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>GPB</span> 18,754.00 </h6>
+            <h6 style={{fontSize:"12px",minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>{account}</span> {balanceIsa} </h6>
           </div>
           <div className=" user-panel-element d-flex justify-content-between align-items-center bg-dark" style={{height:""}}>
           
@@ -106,7 +119,7 @@ const UserDashboard = () => {
        
         <div className=" row mt-1 bg-white ">
           <div className="col-9">
-              <h6 className='' style={{fontSize: "13px",fontWeight: "200",marginRight: '13px',color:"#666666"}}>24E9DE19| Current account | EUR</h6>
+              <h6 className='' style={{fontSize: "13px",fontWeight: "200",marginRight: '13px',color:"#666666"}}>24E9DE19| Current account | {account}</h6>
           </div>
           <div className="col-3">
               <div className="d-flex justify-content-between align-items-center">
