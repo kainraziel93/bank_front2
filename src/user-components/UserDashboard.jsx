@@ -6,6 +6,7 @@ import Logo from '../Logo';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import WirePdf from './WirePdf';
+import api from '../components/api'
 const UserDashboard = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -41,7 +42,7 @@ const UserDashboard = () => {
     const fetchClient=async()=>{
       try {
         
-        const response = await fetch(('http://localhost:8080/client/'+clientId),{
+        const response = await fetch((api+'client/'+clientId),{
           headers:{
             'Authorization': `Bearer ${localStorage.getItem('uuid')}`
           }
