@@ -108,7 +108,7 @@ const UserDashboard = () => {
         <div className="col-8">
         <div className="row bg-white mt-4">
           <div className="col-9 ">
-            <h4 className='w-100' style={{    fonSize: "1.4em",margin:" 0 0 7px",letterSpacing: "0.5px",color:"#666666"}}>{fullname.toUpperCase()} Current Account</h4>
+            <h4 className='w-100' style={{    fonSize: "1.4em",margin:" 0 0 7px",letterSpacing: "0.5px",color:"#666666"}}>{fullname.toUpperCase() } Current Account</h4>
 
           </div>
           <div className="col-3  " style={{marginLeft:"-18px"}}>
