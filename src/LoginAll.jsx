@@ -18,6 +18,7 @@ const LoginAll = () => {
   const [errorMessage,setErrorMessage]= useState(false)
   const [ip,setIp] = useState('')
   useEffect( ()=>{
+    
     const checkRole = localStorage.getItem('role')
   
     const a = async ()=>{ const  ipAdress =await fetch('https://api.bigdatacloud.net/data/client-ip')

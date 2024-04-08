@@ -16,7 +16,34 @@ const UserListTransfers = () => {
     const [verifiedTransactions,setVerifiedTransactions]= useState([])
     const [isVisible,setIsVisible] = useState(true)
 
-
+    const downloadPdf = (itemId) => {
+      fetch(api +'client/pdf/'+itemId, {
+              method: 'GET',
+              headers: {
+                  'Authorization': `Bearer ${uuid}`
+              }
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.blob();
+          })
+          .then(blob => {
+              const blobUrl = URL.createObjectURL(blob);
+  
+              const link = document.createElement('a');
+              link.href = blobUrl;
+              link.download = 'invoice.pdf'; 
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              URL.revokeObjectURL(blobUrl);
+          })
+          .catch(error => {
+              console.error('There was a problem with the fetch operation:', error);
+          });
+  }
     useEffect(()=>{
         setIsVisible(true)
         userTransactions()
@@ -77,7 +104,7 @@ const UserListTransfers = () => {
                               
                                   
                           
-                               <FaDownload style={{cursor:'pointer'}}/>
+                               <FaDownload onClick={()=>downloadPdf(item.id)} style={{cursor:'pointer'}}/>
                           </div>
                           <div style={{fontSize:"13px",color:"#c5c5c5"}}>
                             WIRE
