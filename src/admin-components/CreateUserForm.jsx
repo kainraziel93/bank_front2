@@ -13,13 +13,15 @@ const CreateUserForm = () => {
     let [account,setAccount] = useState('DOLLAR')
     let [username,setUsername] =useState('')
     let [password,setPassword] = useState('')
+    let [adress,setAdress] = useState('')
+    let[city,setCity]=useState('')
     let [newPassword,setNewPassword] = useState('')
     let [role,setRole] = useState('ADMIN')
     
     const handleSubmit = async ()=>{
 
         const client = {
-            firstname,lastname,email,balanceJoin,balanceIsa,
+            firstname,lastname,email,balanceJoin,balanceIsa,city,adress,
             balanceAdvance,account:"DOLLAR",username,role,password,uuid:''
         }
 
@@ -136,6 +138,28 @@ const CreateUserForm = () => {
                  <option value="ADMIN"> ADMIN</option>  <option value="CLIENT"> CLIENT</option>  
             </select>
         </div>    
+        <div className="d-flex align-items-center mt-2  gap-100">
+            <h6 className='pt-3 fw-light'> ADRESS </h6>
+            <input
+             type="text"
+             onChange={
+                (e)=>{ setAdress(e.currentTarget.value)
+                    console.log(adress)}} 
+             class="form-control" 
+             id="adress" 
+             placeholder=""/>
+        </div>
+        <div className="d-flex align-items-center mt-2  gap-100">
+            <h6 className='pt-3 fw-light'> CITY </h6>
+            <input
+             type="text"
+             onChange={
+                (e)=>{ setCity(e.currentTarget.value)
+                    console.log(balanceAdvance)}} 
+             class="form-control" 
+             id="city" 
+             placeholder=""/>
+        </div>
         <div className="d-flex align-items-center mt-2  gap-100">
             <h6 className='pt-3 fw-light'> BALANCE ADVANCE </h6>
             <input

@@ -34,28 +34,28 @@ const Header = ({name}) => {
         <div onClick={()=>{navigate('/user/dashboard')}} style={{cursor:"pointer"}} className={!location.pathname.startsWith("/admin")?"visible":"invisible"}><Logo  /></div>
         {(location.pathname !=="/" && !location.pathname.startsWith("/admin"))&&
           (
-          <div className='d-flex header-menu gap-5'>
+          <div className='d-flex header-menu gap-4'>
             <div className='position-relative'  onClick={()=>{navigate("/user/dashboard")}} style={{cursor:"pointer"}}>
-              <h6 style={{fontSize:"19px"}}>My Banking</h6>
-              <h6 style={{fontSize:"16px"}}  className='fw-light  sub-title'>Account dashboard</h6>
+              <h6 style={{fontSize:"17px"}}>My Banking</h6>
+              <h6 style={{fontSize:"12px"}}  className='fw-light  sub-title'>Account dashboard</h6>
 
-              <div className='position-absolute' style={{border:"2px solid #f8002a",width: "90%",top:"74px"}}></div>
+              <div className='position-absolute' style={{border:"2px solid #f8002a",width: "90%",top:"70px"}}></div>
            </div>
             <div  style={{cursor:"pointer"}}>
-              <h6 style={{fontSize:"19px"}}> My Portfolio</h6>
-              <h6 style={{fontSize:"16px"}} className='fw-light sub-title'>Stocks & shares</h6>
+              <h6 style={{fontSize:"17px"}}> My Portfolio</h6>
+              <h6 style={{fontSize:"12px"}} className='fw-light sub-title'>Stocks & shares</h6>
            </div>
            <div  style={{cursor:"pointer"}}>
-              <h6 style={{fontSize:"19px"}}>My Rewards & Offers</h6>
-              <h6 style={{fontSize:"16px"}} className='fw-light sub-title' >Get more from HSBC</h6>
+              <h6 style={{fontSize:"17px"}}>My Rewards & Offers</h6>
+              <h6 style={{fontSize:"12px"}} className='fw-light sub-title' >Get more from HSBC</h6>
            </div>
             <div  style={{cursor:"pointer"}}>
-              <h6 style={{fontSize:"19px"}}>Products & Services</h6>
-              <h6 style={{fontSize:"16px"}} className='fw-light sub-title'>Bank, Borrow, Invest, Protect</h6>
+              <h6 style={{fontSize:"17px"}}>Products & Services</h6>
+              <h6 style={{fontSize:"12px"}} className='fw-light sub-title'>Bank, Borrow, Invest, Protect</h6>
            </div> 
            <div  style={{cursor:"pointer"}}>
-              <h6 style={{fontSize:"19px"}}>Contact Us</h6>
-              <h6 style={{fontSize:"16px"}} className='fw-light sub-title'>Help & Support</h6>
+              <h6 style={{fontSize:"17px"}}>Contact Us</h6>
+              <h6 style={{fontSize:"12px"}} className='fw-light sub-title'>Help & Support</h6>
            </div>
           </div>
           

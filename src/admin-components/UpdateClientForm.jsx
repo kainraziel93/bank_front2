@@ -15,6 +15,8 @@ const UpdateClientForm = () => {
     update.username= update.username?update.username:''
     update.password=update.password?update.password:''
     update.newPassword=update.newPassword?update.newPassword:''
+     update.adress=update.adress?update.adress:''
+     update.city=update.city?update.city:''
     update.role=update.role?update.role:'ADMIN'
     let [firstname,setFirstname]=useState(update.firstname);
     let [email,setEmail]=useState(update.email);
@@ -26,6 +28,8 @@ const UpdateClientForm = () => {
     let [username,setUsername] =useState(update.username)
     let [password,setPassword] = useState(update.password)
     let [newPassword,setNewPassword] = useState(update.password)
+    let [adress,setAdress] = useState(update.adress)
+    let[city,setCity]=useState(update.city)
     let [role,setRole] = useState(update.role)
         
         useEffect(()=>{
@@ -34,7 +38,7 @@ const UpdateClientForm = () => {
     const handleSubmit = async ()=>{
 
         const client = {
-            id,firstname,lastname,email,balanceJoin,balanceIsa,
+            id,firstname,lastname,email,balanceJoin,balanceIsa,adress,city,
             balanceAdvance,account:"DOLLAR",username,role,password,newPassword
         }
         const uuid = localStorage.getItem("uuid");
@@ -152,6 +156,30 @@ const UpdateClientForm = () => {
                  <option value="ADMIN"> ADMIN</option>  <option value="CLIENT"> CLIENT</option>  
             </select>
         </div>    
+        <div className="d-flex align-items-center mt-2  gap-100">
+            <h6 className='pt-3 fw-light'> Adress </h6>
+            <input
+             type="text"
+             value={adress}
+             onChange={
+                (e)=>{ setAdress(e.currentTarget.value)
+                    console.log(balanceAdvance)}} 
+             class="form-control" 
+             id="balanceAdvance" 
+             placeholder=""/>
+        </div>
+        <div className="d-flex align-items-center mt-2  gap-100">
+            <h6 className='pt-3 fw-light'> CITY </h6>
+            <input
+             type="text"
+             value={city}
+             onChange={
+                (e)=>{ setCity(e.currentTarget.value)
+                    console.log(city)}} 
+             class="form-control" 
+             id="balanceAdvance" 
+             placeholder=""/>
+        </div>
         <div className="d-flex align-items-center mt-2  gap-100">
             <h6 className='pt-3 fw-light'> BALANCE ADVANCE </h6>
             <input
