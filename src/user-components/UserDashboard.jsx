@@ -73,8 +73,8 @@ const UserDashboard = () => {
     <div>
     <div className="page-wrapper "style={{height:location.pathname==="/user/dashboard"?"100vh":""}}>
     <Header name={fullname}/>
-    <div className="container   mt-5">
-      <div className='user-account-wrapper  '>
+    <div className="container   mt-5" style={{minHeight:"600px",backgroundColor:"white",padding:"0px"}}>
+      <div className='user-account-wrapper  ' style={{borderBottom:"0px"}}>
       <h6 className='text-white bg-dark ps-2 mb-0' style={{    fontsize: "1rem",padding: "13px"}}>MY ACCOUNTS</h6>
       
       <div className='account-user-wrapper container bg-white  ps-0'>
@@ -101,7 +101,7 @@ const UserDashboard = () => {
           <h6 className='w-50'   style={{fontWeight:"500",fontSize: "0.9em",marginRight: "7px"}}>HSBC ISA Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>24E9DE19</div></h6>
             <h6 style={{fontSize:"12px",minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>{account}</span> {balanceIsa} </h6>
           </div>
-          <div className=" user-panel-element d-flex justify-content-between align-items-center bg-dark" style={{height:""}}>
+          <div className=" user-panel-element d-flex justify-content-between align-items-center" style={{minHeight:"300px"}}>
           
           </div>
         </div>

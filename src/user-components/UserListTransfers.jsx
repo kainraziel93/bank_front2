@@ -77,7 +77,7 @@ const UserListTransfers = () => {
   return (
     <div className='postion-relative'>
          <div>
-          { isVisible && (<Link  className='btn btn-danger rounded-0 text-decoration-none  mt-5'  onClick={()=>{
+          { isVisible && (<Link  className='btn btn-danger rounded-0 text-decoration-none  mt-3'  onClick={()=>{
 
                 setIsVisible(false)
                 }} to="transfert"> Wire Transfer</Link>)
