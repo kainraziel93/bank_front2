@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import api from '../components/api.js'
 const TransactionPage = () => {
@@ -19,6 +19,8 @@ const TransactionPage = () => {
     const [newPassword, setNewPassword] = useState('');
     const [clientTransactions,setClientTransactions] = useState([])
     const [selectedDate, setSelectedDate] = useState(null); 
+    const buttonRef = useRef(null)
+    const buttonRef2 = useRef(null)
     const navigate = useNavigate()
     const uuid = localStorage.getItem("uuid");
     let dateTransform;
@@ -68,6 +70,8 @@ console.log("this is the transaction---------------------------" ,transaction)
               });
               const res = await response.json()
               setClient(res.transaction.client)
+              if(response.status===200) {buttonRef.current.click()
+                 buttonRef2.current.click()}
               await fetchTransactions()
             console.log("hadi response f sucess =>",res)
           
@@ -332,6 +336,7 @@ const handlePasswordChange = async ()=>{
                 </div>
                 <div class="modal-footer">
                     <button type="button" onClick={()=>handleButtonClick(1)} class="btn btn-success">Enregistrer</button>
+                    <button type="button" ref={buttonRef} className="btn btn-secondary d-none" data-bs-dismiss="modal"></button>
 
                 </div>
                 </div>
@@ -435,6 +440,7 @@ const handlePasswordChange = async ()=>{
                 </div>
                 <div class="modal-footer">
                     <button type="button" onClick={()=>handleButtonClick(2)} class="btn btn-success">Modifier</button>
+                    <button type="button" ref={buttonRef2} className="btn btn-secondary d-none" data-bs-dismiss="modal"></button>
 
                 </div>
                 </div>
