@@ -96,24 +96,27 @@ const UserListTransfers = () => {
                         <td className='pt-3' style={{fontSize:"13px",color:"#666666"}}>{ formatDate(new Date(item.date))}</td>
                       <td className="">
                           <div className="d-flex align-items-center gap-1"style={{fontSize:"13px",color:"#666666"}}>
-                              <span>{item.reference}</span>     
-                              <div onClick={()=>{setElement(item)}}>
+                              <span>{item.reference}</span>   
+                         {     item.adminTransaction===false && ( 
+                         <div className='d-flex  gap-1 align-items-center'>
+                         <div onClick={()=>{setElement(item)}}>
                               <PdfConverter   downloadFileName={`${item.reference} ${formatDate(new Date(item.date))}`}
                                   rootElementId="testId"     />
                               </div>
                               
                                   
                           
-                               <FaDownload onClick={()=>downloadPdf(item.id)} style={{cursor:'pointer'}}/>
+                               <FaDownload onClick={()=>downloadPdf(item.id)} style={{cursor:'pointer'}}/> </div> ) }
+                             
                           </div>
                           <div style={{fontSize:"13px",color:"#c5c5c5"}}>
-                            WIRE
+                            {item.type}
                           </div>
                           
                           </td>
                         <td  className='pt-3' style={{fontSize:"13px",color:"#c5c5c5"}}>confirmed</td>
                         <td className='d-flex flex-column justify-content-start align-items-start '>
-                        <div className='fw-light 'style={{fontSize:"13px",color:"#666666"}}><span>-{item.amount}</span></div>
+                        <div className='fw-light 'style={{fontSize:"13px",color:"#666666"}}><span>{item.adminTransaction===true? item.amount:"-"+item.amount}</span></div>
                           <div style={{fontSize:"13px",color:"#c5c5c5"}}>{ item.balance <0? <span>{item.balance}</span>:<span>+{item.balance}</span> }</div>
                           </td>
                     </tr>

@@ -174,7 +174,7 @@ const handlePasswordChange = async ()=>{
             <Link to="/admin/edit" state={{user:client}} > Editer à la fiche client</Link>
            
         </div>
-        <h3 className="text-center fw-bold mt-5">HM TRADING GLOBAL PTE.LTD</h3>
+        <h3 className="text-center fw-bold mt-5">{client.firstname.toUpperCase()+" "+client.lastname.toUpperCase()}</h3>
             <h4 className="text-center fw-bold">Balance  {client.balance} €</h4>
             <h4 className="text-center fw-bold">Disponible  {client.disponible} €</h4>
             <h6 className="text-center fw-lighter ">Email:  {client.email} </h6>

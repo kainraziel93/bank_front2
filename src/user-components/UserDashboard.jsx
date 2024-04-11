@@ -18,6 +18,7 @@ const UserDashboard = () => {
   const [fullname,setFullName] = useState('')
   const [isVisible, setIsVisible] = useState(false);
   const [account,setAccount]=useState('')
+  const [accountNumber,setAccountNumber] = useState('')
   const clientId = localStorage.getItem('id')
   useEffect(()=>{
     if(localStorage.getItem('role')!=="CLIENT" && localStorage.getItem('role')!=="ADMIN"){
@@ -54,6 +55,7 @@ const UserDashboard = () => {
          setBalanceJoin(a.balanceJoin)
          setBalanceIsa(a.balanceIsa)
          setFullName(a.firstname+" "+a.lastname)
+         setAccountNumber(a.accountNumber)
          if(a.account==='EURO')  setAccount('EUR')
          if(a.account==='DOLLAR')setAccount('USD')
          if(a.account==='LIVRE')setAccount('GPB')
@@ -85,20 +87,20 @@ const UserDashboard = () => {
           </div>
           
           <div className=" user-panel-element bg-white  d-flex justify-content-between align-items-center ">
-            <h6 className='w-100'    style={{fontWeight:"500",fontSize: "0.8em",marginRight: "7px"}}>{fullname.toUpperCase()} Current Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>24E9DE19</div></h6>
+            <h6 className='w-100'    style={{fontWeight:"500",fontSize: "0.8em",marginRight: "7px"}}>{fullname.toUpperCase()} Current Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>{accountNumber}</div></h6>
             <h6 style={{fontSize:"12px",minWidth:"100px" }}>  <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>{account}</span>{balance || 0}</h6>
             
           </div>
           <div className=" user-panel-element  d-flex justify-content-between align-items-center ">
-            <h6 className='w-50'     style={{fontWeight:"500",fontSize: "0.9em",marginRight: "7px"}}>HSBC Advance Current <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>24E9DE19</div></h6>
+            <h6 className='w-50'     style={{fontWeight:"500",fontSize: "0.9em",marginRight: "7px"}}>HSBC Advance Current <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>{accountNumber}</div></h6>
             <h6 style={{fontSize:"12px",minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>{account}</span> {balanceAdvance}</h6>
           </div>
           <div className=" user-panel-element d-flex justify-content-between align-items-center ">
-          <h6 className='w-50' style={{fontWeight:"500",fontSize: "0.9em",marginRight: "7px"}} >Saving Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>24E9DE19</div></h6>
+          <h6 className='w-50' style={{fontWeight:"500",fontSize: "0.9em",marginRight: "7px"}} >Saving Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>{accountNumber}</div></h6>
             <h6 style={{fontSize:"12px",minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>{account}</span>{balanceJoin} </h6>
           </div>
           <div className=" user-panel-element d-flex justify-content-between align-items-center ">
-          <h6 className='w-50'   style={{fontWeight:"500",fontSize: "0.9em",marginRight: "7px"}}>HSBC ISA Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>24E9DE19</div></h6>
+          <h6 className='w-50'   style={{fontWeight:"500",fontSize: "0.9em",marginRight: "7px"}}>HSBC ISA Account <div style={{fontWeight:"300",fontSize: "0.6em",marginRight: "7px"}}>{accountNumber}</div></h6>
             <h6 style={{fontSize:"12px",minWidth:"100px" }}> <span  style={{fontWeight:"300",fontSize: "0.8em",marginRight: "7px"}}>{account}</span> {balanceIsa} </h6>
           </div>
           <div className=" user-panel-element d-flex justify-content-between align-items-center" style={{minHeight:"300px"}}>
@@ -120,7 +122,7 @@ const UserDashboard = () => {
        
         <div className=" row mt-1 bg-white ">
           <div className="col-9">
-              <h6 className='' style={{fontSize: "13px",fontWeight: "200",marginRight: '13px',color:"#666666"}}>24E9DE19| Current account | {account}</h6>
+              <h6 className='' style={{fontSize: "13px",fontWeight: "200",marginRight: '13px',color:"#666666"}}>{accountNumber}| Current account | {account}</h6>
           </div>
           <div className="col-3">
               <div className="d-flex justify-content-between align-items-center">
