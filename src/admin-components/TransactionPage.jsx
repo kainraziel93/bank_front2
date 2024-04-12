@@ -124,13 +124,27 @@ const fetchClientTransactions =async ()=>{
 }
 
 
+
 console.log(transaction);
+}
+
+const deleteTransaction= async ()=>{
+  const response =await  fetch(api+"transaction/"+"delete/"+elements.id,{
+    headers: {
+      'Content-Type':'application/json' ,
+      'Authorization':`Bearer ${uuid}`
+    },
+   
+  })
+  const res = await response.json()
+  await fetchTransactions()
+  console.log("transaction deleted =>",res)
 }
 useEffect(()=>{
     fetchTransactions()
     fetchClientTransactions()
     console.log("-------------------------",client)
-},[])
+},[ ])
 
 const handlePasswordChange = async ()=>{
 
@@ -447,6 +461,23 @@ const handlePasswordChange = async ()=>{
                 </div>
             </div>
             </div>
+                    <div class="modal fade" id="deleteModal1" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">suppression de la transaction</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                          <h6 className='fw-light'>La transaction #{elements.id} de {elements.amount}  sera supprimé</h6>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick={()=>deleteTransaction(elements.id)}>Supprimer</button>
+                            
+                          </div>
+                        </div>
+                      </div>
+                   </div>
             <table className='table table-striped'>
                 <thead>
                     <tr>
@@ -467,7 +498,10 @@ const handlePasswordChange = async ()=>{
                                     <td>{element.description} </td>
                                     <td>{element.status} </td>
                                     <td>{element.amount} </td>
-                                    <td style={{textDecoration:"underline",color:"blue",cursor:"pointer"}} data-bs-toggle="modal" data-bs-target="#exampleModal1" onClick={()=>setElements(element)}> edit </td>
+                                    <td > 
+                                      <div style={{textDecoration:"underline",color:"blue",cursor:"pointer"}} data-bs-toggle="modal" data-bs-target="#exampleModal1" onClick={()=>setElements(element)}>edit </div> 
+                                      <div style={{textDecoration:"underline",color:"blue",cursor:"pointer"}} data-bs-toggle="modal" data-bs-target="#deleteModal1" onClick={()=>setElements(element)}>delete</div>
+                                      </td>
 
                                 </tr>
                             )
