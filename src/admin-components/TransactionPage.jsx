@@ -94,6 +94,7 @@ const fetchTransactions =async ()=>{
           });
           const res = await response.json()
           setTransaction(res)
+          setClient(res[0].client)
         console.log("hadi response f sucess =>",res)
     
     } 
