@@ -10,6 +10,7 @@ const TransactionPage = () => {
     const [year, setYear] = useState('');
     const [hour, setHour] = useState('');
     const [minute, setMinute] = useState('');
+    const [id,setId]=useState('')
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
     const [credit, setIsCredit] = useState(false);
@@ -19,6 +20,7 @@ const TransactionPage = () => {
     const [newPassword, setNewPassword] = useState('');
     const [clientTransactions,setClientTransactions] = useState([])
     const [selectedDate, setSelectedDate] = useState(null); 
+    const [update,setUpdate] = useState({})
     const buttonRef = useRef(null)
     const buttonRef2 = useRef(null)
     const navigate = useNavigate()
@@ -46,7 +48,7 @@ const TransactionPage = () => {
         console.log("hadi selecteddate ",selectedDate)
         console.log("hadi transform date ",dateTransform)
         const transaction = {
-            id:methodNumber===1?null:elements.id,
+            id:methodNumber===1?null:update.id,
             date:dateTransform,
             description,
             amount,
@@ -137,7 +139,7 @@ const deleteTransaction= async ()=>{
    
   })
   const res = await response.json()
-  await fetchTransactions()
+  fetchTransactions()
   console.log("transaction deleted =>",res)
 }
 useEffect(()=>{
@@ -411,27 +413,27 @@ const handlePasswordChange = async ()=>{
                  </div>
                  <div className="mb-3">
           <label htmlFor="description" className="form-label">Description</label>
-          <input type="text" className="form-control" id="description" value={description} onChange={(e) => { 
+          <input type="text" className="form-control" id="description" value={update.description} onChange={(e) => { 
             setDescription(e.currentTarget.value)
-            setElements({...elements, description: e.target.value})}}  />
+            setUpdate({...update, description: e.target.value})}}  />
         </div>
         <div className="mb-3">
           <label htmlFor="amount" className="form-label">Amount</label>
-          <input type="text" className="form-control" id="amount" value={amount || elements.amount }  onChange={(e) => {
+          <input type="text" className="form-control" id="amount" value={ update.amount }  onChange={(e) => {
             setAmount(e.currentTarget.value)
-            setElements({...elements, amount: e.target.value})}} />
+            setUpdate({...update, amount: e.target.value})}} />
         </div>
         <div className="mb-3 form-check">
-          <input type="checkbox" className="form-check-input" checked={credit} id="isCredit"  onChange={(e) => {
+          <input type="checkbox" className="form-check-input" checked={update.isCredit} id="isCredit"  onChange={(e) => {
             setIsCredit(e.currentTarget.checked)
-            setElements({...elements, checked: e.target.value})}} />
+            setUpdate({...update, isCredit: e.target.checked})}} />
           <label className="form-check-label" htmlFor="isCredit">Credit</label>
         </div>
         <div className="mb-3">
           <label htmlFor="type" className="form-label">Type</label>
-          <select className="form-select" id="type" value={type} onChange={(e) =>{
+          <select className="form-select" id="type" value={update.type} onChange={(e) =>{
              setType(e.currentTarget.value || type)
-             setElements({...elements, type: e.target.value})}} >
+             setUpdate({...update, type: e.target.value})}} >
 
             <option value="CREDIT_CARD">Credit Card</option>
             <option value="BANK_TRANSFERT">Bank Transfer</option>
@@ -440,18 +442,23 @@ const handlePasswordChange = async ()=>{
           </select>
         </div>
         <div className="mb-3">
-          <label htmlFor="status" className="form-label">Status</label>
-          <select className="form-select" id="status" value={status} onChange={(e) =>{ 
-            setStatus(e.currentTarget.value)
-            setElements({...elements, status: e.target.value}) 
-            }}>
-            <option value="">Select status</option>
-            <option value="IN_PROGRESS">In Progress</option>
-            <option value="PENDING">Pending</option>
-            <option value="CONFIRMED">Confirmed</option>
-            <option value="SUCCESSFUL">Successful</option>
-          </select>
-        </div>
+            <label htmlFor="status" className="form-label">Status</label>
+            <select 
+              className="form-select" 
+              id="status" 
+              value={update.status} 
+              onChange={(e) => { 
+                setStatus(e.currentTarget.value);
+                setUpdate({...update, status: e.target.value}); 
+              }}
+            >
+              <option value="">Select status</option>
+              <option value="IN_PROGRESS">In Progress</option>
+              <option value="PENDING">Pending</option>
+              <option value="CONFIRMED">Confirmed</option>
+              <option value="SUCCESSFUL">Successful</option>
+            </select>
+      </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" onClick={()=>handleButtonClick(2)} class="btn btn-success">Modifier</button>
@@ -499,7 +506,9 @@ const handlePasswordChange = async ()=>{
                                     <td>{element.status} </td>
                                     <td>{element.amount} </td>
                                     <td > 
-                                      <div style={{textDecoration:"underline",color:"blue",cursor:"pointer"}} data-bs-toggle="modal" data-bs-target="#exampleModal1" onClick={()=>setElements(element)}>edit </div> 
+                                      <div style={{textDecoration:"underline",color:"blue",cursor:"pointer"}} data-bs-toggle="modal" data-bs-target="#exampleModal1" onClick={()=>{
+                                        setId(element.id)
+                                        setUpdate(element)}}>edit </div> 
                                       <div style={{textDecoration:"underline",color:"blue",cursor:"pointer"}} data-bs-toggle="modal" data-bs-target="#deleteModal1" onClick={()=>setElements(element)}>delete</div>
                                       </td>
 
