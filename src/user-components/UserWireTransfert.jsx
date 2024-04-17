@@ -63,9 +63,7 @@ const navigate = useNavigate()
  const verifyDigits = async ()=>{
   try {
     setIsLoading(true)
-    setTimeout(()=>{
-     setIsLoading(false)
-    },3000)
+    await new Promise(resolve => setTimeout(resolve, 5000));
     const response = await fetch(`${api}client_transaction/verify/${digits}?id=${transactionId}`, {
         headers: {
             'Content-Type':'application/json' ,
@@ -149,7 +147,7 @@ console.log("errr =>"+error)
         </div>
 
 
-<div class="modal fade  absolute"  id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style={{top:"20%"}}>
+<div class="modal fade  absolute"  id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style={{top:"10%"}}>
   <div class="modal-dialog " style={{maxWidth:"30%"}}>
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-center" style={{border:"0px"}}>

@@ -11,22 +11,31 @@ import WirePdf from './WirePdf.jsx';
 const UserListTransfers = () => {
   const [element,setElement] = useState({})
 
+ 
     const uuid = localStorage.getItem('uuid')
     const clientId = localStorage.getItem('id')
     const [verifiedTransactions,setVerifiedTransactions]= useState([])
     const [isVisible,setIsVisible] = useState(true)
 
     const downloadPdf = (itemId) => {
+      let filename;
       fetch(api +'client/pdf/'+itemId, {
               method: 'GET',
               headers: {
                   'Authorization': `Bearer ${uuid}`
               }
           })
+          
           .then(response => {
               if (!response.ok) {
                   throw new Error('Network response was not ok');
               }
+              filename =  response.headers.get('filename');
+              
+              console.log("hnaaaaa filename",response.headers)
+              response.headers.forEach((value, name) => {
+                console.log(name + ': ' + value);})
+
               return response.blob();
           })
           .then(blob => {
@@ -34,7 +43,6 @@ const UserListTransfers = () => {
   
               const link = document.createElement('a');
               link.href = blobUrl;
-              link.download = 'invoice.pdf'; 
               document.body.appendChild(link);
               link.click();
               document.body.removeChild(link);
@@ -100,7 +108,7 @@ const UserListTransfers = () => {
                          {     item.adminTransaction===false && ( 
                          <div className='d-flex  gap-1 align-items-center'>
                          <div onClick={()=>{setElement(item)}}>
-                              <PdfConverter   downloadFileName={`${item.reference} ${formatDate(new Date(item.date))}`}
+                              <PdfConverter   downloadFileName={()=>{return Math.floor(Math.random() * 900000) + 100000+""}}
                                   rootElementId="testId"     />
                               </div>
                               
