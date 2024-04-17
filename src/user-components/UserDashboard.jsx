@@ -72,7 +72,7 @@ const UserDashboard = () => {
     
   },[])
   return (
-    <div>
+    <div className='page-wrapper-top'>
     <div className="page-wrapper "style={{height:location.pathname==="/user/dashboard"?"100vh":""}}>
     <Header name={fullname}/>
     <div className="container   mt-5" style={{minHeight:"600px",backgroundColor:"white",padding:"0px"}}>
