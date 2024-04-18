@@ -76,7 +76,7 @@ const LoginAll = () => {
    
   }
   return (
-    <div className='page-wrapper '>
+    <div className='page-wrapper-22 '>
       <Header/>
 
  

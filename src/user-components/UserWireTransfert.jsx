@@ -139,7 +139,9 @@ console.log("errr =>"+error)
             <DatePicker
              minDate={new Date()}
               required style={{minWidth:"400px"}}  
-              selected={date} onChange={(e)=> setDate(e)}/>
+              selected={date} onChange={(e)=> {
+                console.log("daaaate",e)
+                setDate(e.toUTCString())}}/>
             
         </div>
         <div className="d-flex justify-content-end pe-0">

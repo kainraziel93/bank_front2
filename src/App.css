@@ -20,6 +20,15 @@ width: 200px;
   height: 100%;
   margin-bottom: 210px;
 }
+.page-wrapper-22{
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
+  height: 100%;
+  margin-bottom: 210px;
+}
+
 .page-wrapper-top{
   background-image: url('./assets/background.jpg');
   background-size: cover;

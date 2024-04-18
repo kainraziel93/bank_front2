@@ -4,8 +4,23 @@ import './WirePdf.css'
 const WirePdf = ({element}) => {
 
     useEffect(()=>{
-        console.log("hada =>",element.date)
+        console.log("hada =>",element)
     },[element])
+
+    const add1DayToDate=(date)=>{
+        var dateString =date.split('T')[0]; // Extract the date part from the string
+
+        // Parse the date string into a Date object
+        var date1 = new Date(dateString);
+
+        // Add one day to the date
+        date1.setDate(date1.getDate() + 1);
+
+        // Convert the updated date back to a string
+        var updatedDateString = date1.toISOString().split('T')[0];
+        return updatedDateString
+            }
+
     const generatechips=()=> {
         // Generate three random numbers between 100000 and 999999
         const num1 = Math.floor(Math.random() * 900000) + 100000;
@@ -38,7 +53,7 @@ const WirePdf = ({element}) => {
         </div>
         <div className="col-12 ">
             <h6  style={{color:"gray",fontWeight:"400" } }> modified</h6>
-          { element.date && <h6> {element.date.split(('T'))[0]}</h6>}
+          { element.date && <h6> {add1DayToDate(element.date)}</h6>}
         </div>
 
         <div className="col-12 ">
@@ -52,8 +67,10 @@ const WirePdf = ({element}) => {
         
         <div className="col-3 ">
             <h6  style={{color:"gray",fontWeight:"400" } }> Debit Account</h6>
-            <h6 >HM TRADING GLOBAL PTE.LTD Current Account<br/>
-                Acct No 24E9DE19  GBP</h6>
+            {element.client  && (<h6 >{element.client.firstname.toUpperCase()+" "+element.client.lastname.toUpperCase()}<br/>
+                {element.client.adress}<br/>
+                {element.client.city}</h6>)}
+            
         </div>
 
         <div className="col-12 ">
@@ -96,7 +113,7 @@ const WirePdf = ({element}) => {
 
         <div className="col-12 ">
             <h6  style={{color:"gray",fontWeight:"400"}}> Value Date</h6>
-           {element.date && <h6 >{element.date.split('T')[0]}</h6>}
+           {element.date && <h6 >{add1DayToDate(element.date)}</h6>}
         </div>
 
         

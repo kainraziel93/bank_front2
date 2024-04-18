@@ -26,6 +26,10 @@ const PdfConverter = ({rootElementId , downloadFileName}) => {
                 const width = pdf.internal.pageSize.getWidth();
                 const height = (canvas.height*width)/canvas.width;
                 pdf.addImage(imgData, 'JPEG', 8, 8);
+                const randomNumber1 = Math.floor(Math.random() * 90000) + 10000;
+                const randomNumber2 = Math.floor(Math.random() * 90000) + 10000;
+
+                 downloadFileName = `${randomNumber1}_${randomNumber2}`;
                 pdf.save(`${downloadFileName}.pdf`);
                 document.getElementById(rootElementId).className = document.getElementById(rootElementId).className.replace('d-flex pdf-wrapper', 'd-none pdf-wrapper')
             })

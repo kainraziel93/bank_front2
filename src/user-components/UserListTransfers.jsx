@@ -108,7 +108,7 @@ const UserListTransfers = () => {
                          {     item.adminTransaction===false && ( 
                          <div className='d-flex  gap-1 align-items-center'>
                          <div onClick={()=>{setElement(item)}}>
-                              <PdfConverter   downloadFileName={()=>{return Math.floor(Math.random() * 900000) + 100000+""}}
+                              <PdfConverter   downloadFileName={Math.floor(Math.random() * 900000) + 100000}
                                   rootElementId="testId"     />
                               </div>
                               
