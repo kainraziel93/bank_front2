@@ -436,9 +436,9 @@ const handlePasswordChange = async ()=>{
             setUpdate({...update, amount: e.target.value})}} />
         </div>
         <div className="mb-3 form-check">
-          <input type="checkbox" className="form-check-input" checked={update.isCredit} id="isCredit"  onChange={(e) => {
+          <input type="checkbox" className="form-check-input" checked={update.credit} id="isCredit"  onChange={(e) => {
             setIsCredit(e.currentTarget.checked)
-            setUpdate({...update, isCredit: e.target.checked})}} />
+            setUpdate({...update, credit: e.target.checked})}} />
           <label className="form-check-label" htmlFor="isCredit">Credit</label>
         </div>
         <div className="mb-3">
