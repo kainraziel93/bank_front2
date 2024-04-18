@@ -69,8 +69,8 @@ const ListUsers = () => {
                             <td style={{cursor:"pointer",textDecoration:"underline",color:"blue"}} onClick={()=>navigate("/admin/transaction/"+element.id,{state:{user:element}})}>{element.firstname+" "+element.lastname}</td>
                             <td>{element.balance}</td>
                             <td>{element.role}</td>
-                            <td className='d-flex gap-5'> <span  style={{cursor:"pointer",textDecoration:"underline",color:"blue"}} onClick={()=>navigate("edit",{state:{user:element}})}>edit</span>
-                            { element.id!==1 && < span data-bs-toggle="modal" data-bs-target="#deleteModal" style={{cursor:"pointer",textDecoration:"underline",color:"blue"}} onClick={()=>setUser(element)}>delete</span>}</td>
+                            <td className='d-flex gap-5'> <span  style={{cursor:"pointer",textDecoration:"underline",color:"blue"}} onClick={()=>navigate("edit",{state:{user:element}})}>edit/modifier</span>
+                            { element.id!==1 && < span data-bs-toggle="modal" data-bs-target="#deleteModal" style={{cursor:"pointer",textDecoration:"underline",color:"blue"}} onClick={()=>setUser(element)}>delete/supprimer</span>}</td>
                         </tr>)
                     })
                 }

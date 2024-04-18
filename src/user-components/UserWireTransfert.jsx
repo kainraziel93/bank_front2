@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import DatePicker from "react-datepicker";
 import api from '../components/api.js'
 import { useNavigate } from 'react-router-dom'
+import { ImCross } from "react-icons/im";
 const UserWireTransfert = () => {
   const [accountNumber,setAccountNumber] = useState('');
   const [iban,setIban] = useState('')
@@ -85,8 +86,10 @@ console.log("errr =>"+error)
 
  }
   return (
-    <div className='pt-5  user-wire-wrapper'>
+    <div className='pt-5  user-wire-wrapper '>
+        <div className='d-flex justify-content-end'><ImCross className='exit-button fs-5' onClick={()=>navigate('/user/dashboard')} /> </div>
         <div className="d-flex align-items-center gap-100">
+        
             <h5 className='pt-3 fw-light' style={{fontSize:"12px",fontWeight:"300",color:"#666666"}}> WIRE FREE </h5>
             <div class="form-check ps-5 ms-4">
               
@@ -149,7 +152,7 @@ console.log("errr =>"+error)
         </div>
 
 
-<div class="modal fade  absolute"  id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style={{top:"10%"}}>
+<div class="modal fade position-absolute "  id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style={{top:"10%",minHeight:"100%"}}>
   <div class="modal-dialog " style={{maxWidth:"30%"}}>
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-center" style={{border:"0px"}}>
@@ -188,7 +191,7 @@ console.log("errr =>"+error)
             <h5 className='me-5' style={{fontSize: "0.9em",color: "#000000",fontWeight: "400"}}>
             6 digit authorisation code
             </h5>
-            <input type="text"  className="mt-2" style={{minWidth:"320px"}}  value={digits} onChange={(e)=>{setDigits(e.currentTarget.value)}}eholder='6 digit' />
+            <input type="text"  className="mt-2" style={{minWidth:"320px"}}  value={digits} onChange={(e)=>{setDigits(e.currentTarget.value)}} placeholder='6 digit' />
       </div>
       <div className='d-flex gap-1 justify-content-end  py-3'>
       <span type="button "  ref={buttonRef} class="btn btn-secondary d-none" data-bs-dismiss="modal"></span>

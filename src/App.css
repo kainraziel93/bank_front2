@@ -20,6 +20,20 @@ width: 200px;
   height: 100%;
   margin-bottom: 210px;
 }
+.exit-button:hover{
+background-color: red;
+
+}
+.exit-button{
+  width: 20px;
+  transition:0.4s all ease-in-out ;
+  color: white;
+  border-radius: 50%;
+  padding:2px;
+  background-color: rgb(255, 67, 67);
+  color:white;
+  cursor: pointer;
+}
 .page-wrapper-22{
   background-image: url('./assets/background.jpg');
   background-size: cover;

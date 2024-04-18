@@ -194,7 +194,7 @@ const CreateUserForm = () => {
              placeholder=""/>
         </div>
         <div className="d-flex justify-content-end pe-4">
-        <button  className='btn login-btn mt-5' onClick={handleSubmit}> add</button>
+        <button  className='btn login-btn mt-5' onClick={handleSubmit}> Ajouter</button>
         </div>
         
     </div>

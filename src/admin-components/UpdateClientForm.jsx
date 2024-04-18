@@ -42,6 +42,7 @@ const UpdateClientForm = () => {
             balanceAdvance,account:"DOLLAR",username,role,password,newPassword
         }
         const uuid = localStorage.getItem("uuid");
+        console.log("uuid=====>",uuid)
         console.log(client)
         try {
             
@@ -217,7 +218,7 @@ const UpdateClientForm = () => {
              placeholder=""/>
         </div>
         <div className="d-flex justify-content-end pe-4">
-        <button  className='btn login-btn mt-5' onClick={handleSubmit}> update</button>
+        <button  className='btn login-btn mt-5' onClick={handleSubmit}> update/modifier</button>
         </div>
         
     </div>

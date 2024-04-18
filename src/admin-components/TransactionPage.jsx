@@ -23,6 +23,7 @@ const TransactionPage = () => {
     const [update,setUpdate] = useState({})
     const buttonRef = useRef(null)
     const buttonRef2 = useRef(null)
+    const showUpdate = useRef(null)
     const navigate = useNavigate()
     const uuid = localStorage.getItem("uuid");
     let dateTransform;
@@ -57,6 +58,17 @@ const TransactionPage = () => {
             credit,
 
           };
+
+          const transactionUpdate = {
+            id:update.id,
+            date:dateTransform,
+            description:update.description,
+            amount:update.amount,
+            type:update.type,
+            status:update.status,
+            credit:update.credit,
+
+          };
 console.log("this is the transaction---------------------------" ,transaction)
         console.log(client)
         try {
@@ -68,7 +80,7 @@ console.log("this is the transaction---------------------------" ,transaction)
                     'Content-Type':'application/json' ,
                     'Authorization':`Bearer ${uuid}`
                   },
-                body: JSON.stringify(transaction)
+                body: methodNumber==1?JSON.stringify(transaction):JSON.stringify(transactionUpdate)
               });
               const res = await response.json()
               setClient(res.transaction.client)
@@ -192,7 +204,7 @@ const handlePasswordChange = async ()=>{
     <div className='container'>
         <div className='d-flex justify-content-between align-items-center'>
             <Link to="/admin"> Retour a la list </Link>
-            <Link to="/admin/edit" state={{user:client}} > Editer à la fiche client</Link>
+            <Link to="/admin/edit" state={{user:client}} > Editer  la fiche client</Link>
            
         </div>
         <h3 className="text-center fw-bold mt-5">{client.firstname.toUpperCase()+" "+client.lastname.toUpperCase()}</h3>
@@ -445,7 +457,7 @@ const handlePasswordChange = async ()=>{
             <label htmlFor="status" className="form-label">Status</label>
             <select 
               className="form-select" 
-              id="status" 
+              id="status"  
               value={update.status} 
               onChange={(e) => { 
                 setStatus(e.currentTarget.value);
@@ -506,10 +518,15 @@ const handlePasswordChange = async ()=>{
                                     <td>{element.status} </td>
                                     <td>{element.amount} </td>
                                     <td > 
-                                      <div style={{textDecoration:"underline",color:"blue",cursor:"pointer"}} data-bs-toggle="modal" data-bs-target="#exampleModal1" onClick={()=>{
+                                      <div style={{textDecoration:"underline",color:"blue",cursor:"pointer"}}  onClick={  ()=>{
                                         setId(element.id)
-                                        setUpdate(element)}}>edit </div> 
-                                      <div style={{textDecoration:"underline",color:"blue",cursor:"pointer"}} data-bs-toggle="modal" data-bs-target="#deleteModal1" onClick={()=>setElements(element)}>delete</div>
+
+                                        setUpdate(element)
+                                        showUpdate.current.click()
+                                        
+                                        console.log("hadi update=>",update)}}>edit/modifier </div> 
+                                        <div className='btn d-none' ref={showUpdate} data-bs-toggle="modal" data-bs-target="#exampleModal1"></div>
+                                      <div style={{textDecoration:"underline",color:"blue",cursor:"pointer"}} data-bs-toggle="modal" data-bs-target="#deleteModal1" onClick={()=>setElements(element)}>delete/supprimer</div>
                                       </td>
 
                                 </tr>
