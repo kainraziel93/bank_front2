@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import WirePdf from './WirePdf';
 import api from '../components/api'
+import formatDate from '../components/Utils';
 const UserDashboard = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -134,7 +135,7 @@ const UserDashboard = () => {
         </div>
         <div className="row  mt-1 bg-white ">
           <div className="col-9">
-              <h6 className='fw-light' style={{color:"#c5c5c5",fontSize: "13px",fontWeight: "200",marginRight: '0px'}}>Last updated: 27 Mar 2024</h6>
+              <h6 className='fw-light' style={{color:"#c5c5c5",fontSize: "13px",fontWeight: "200",marginRight: '0px'}}>Last updated: {formatDate(new Date())}</h6>
           </div>
           <div className="col-3">
               <div className="d-flex justify-content-between align-items-center">
