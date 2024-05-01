@@ -15,8 +15,9 @@ const UserListTransfers = () => {
     const uuid = localStorage.getItem('uuid')
     const clientId = localStorage.getItem('id')
     const [verifiedTransactions,setVerifiedTransactions]= useState([])
+    let verfiedTransactionReversed =[]
     const [isVisible,setIsVisible] = useState(true)
-    let newBalance = 0
+
     const downloadPdf = (itemId) => {
       let filename;
       fetch(api +'client/pdf/'+itemId, {
@@ -74,7 +75,19 @@ const UserListTransfers = () => {
           });
           const res = await response.json()
         console.log("hadi response f sucess =>",res)
-          setVerifiedTransactions(res)
+
+           var newblnce = 0
+          verfiedTransactionReversed = res.slice().reverse().map(item=>{
+            newblnce = newblnce+(item.adminTransaction===true?item.amount:item.amount*-1)
+            return {
+              ...item,
+              newBalance:  newblnce,
+            }
+            
+          })
+          setVerifiedTransactions(verfiedTransactionReversed.slice().reverse())
+          console.log("verified transactions =>",verifiedTransactions)
+          console.log(" reversed verified transactions =>",verfiedTransactionReversed)
          
     } 
     catch (error) {
@@ -100,7 +113,7 @@ const UserListTransfers = () => {
                 <tbody>
                   {verifiedTransactions.map((item,key)=>{
                  
-                    newBalance = newBalance+(item.adminTransaction===true?item.amount:item.amount*-1)
+                   
                     return <tr key={key} >
                         <td className='pt-3' style={{fontSize:"13px",color:"#666666"}}>{ formatDate(new Date(item.date))}</td>
                       <td className="">
@@ -126,7 +139,7 @@ const UserListTransfers = () => {
                         <td  className='pt-3' style={{fontSize:"13px",color:"#c5c5c5"}}>confirmed</td>
                         <td className='d-flex flex-column justify-content-start align-items-start '>
                         <div className='fw-light 'style={{fontSize:"13px",color:"#666666"}}><span>{item.adminTransaction===true?item.amount<0?item.amount:"+"+item.amount:"-"+item.amount}</span></div>
-                          <div style={{fontSize:"13px",color:"#c5c5c5"}}>{ <span> {newBalance}</span>}</div>
+                          <div style={{fontSize:"13px",color:"#c5c5c5"}}>{ <span> {item.newBalance}</span>}</div>
                           </td>
                     </tr>
                   })}
